@@ -1,0 +1,3 @@
+import okna
+
+okna.MainWindow()
