@@ -1,3 +1,3 @@
-import okna
+from GUI import *
 
-okna.MainWindow()
+GUI()
