@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
+from tkinter.messagebox import askquestion
 import loadingfile
 
 pathpodzielony = 0
@@ -7,6 +8,26 @@ fsafsa = 0
 dane = 0
 height = 5
 width = 5
+
+
+def askcategory():
+    choice = askquestion("Yes/No", "Does the file contain data category names in the first line?")
+    print('User chosen: {}'.format(choice))
+    if choice == 'yes':
+        return 1
+    elif choice == 'no':
+        return 2
+
+
+def Error():
+    error = Tk()
+
+    infoplik = Label(error, text="Error")
+    infoplik.grid(row=1, column=2)
+    przycisk1 = Button(error, text='OK', command=error.destroy())
+    przycisk1.grid(row=1, column=1, sticky="news")
+
+    error.mainloop()
 
 
 class GUI:
@@ -18,15 +39,15 @@ class GUI:
             pathpodzielony = pathpelny.split('\\')
             print(pathpodzielony)
             textboxloadedfile.delete('1.0', END)
-            textboxloadedfile.insert(END, pathpodzielony[-1])
+            textboxloadedfile.insert(END, pathpelny)
 
         def LoadFile():
             global pathpodzielony
             global dane
             dane = loadingfile.loadfile(pathpodzielony)
-            print(dane.read())
-            #textboxloadedfile.delete('1.0', END)
-            #textboxloadedfile.insert(END, 'Unable to open file.')
+            #print(dane.read())
+            kategorie = loadingfile.detectcolumns()
+            print(kategorie)
 
         root = Tk()
         root.title('Data Analyzer')
@@ -42,8 +63,8 @@ class GUI:
 
         infoplik = Label(root, text="Selected File:")
         infoplik.grid(row=2, column=1)
-        textboxloadedfile = Text(root, height=1, width=15)
-        textboxloadedfile.grid(row=2, column=2)
+        textboxloadedfile = Text(root, height=1, width=50)
+        textboxloadedfile.grid(row=2, column=2, columnspan=5)
 
         if fsafsa > 0:
             for i in range(height):  # Rows
