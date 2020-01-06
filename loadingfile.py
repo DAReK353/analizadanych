@@ -4,39 +4,41 @@ import GUI
 dane = 0
 
 
-def loadfile(pathpodzielony):
+def zaladujplik(sciezkapodzielona):
     global dane
     s = "\\"
-    pathbezpliku = s.join(pathpodzielony[:-1])
-    chdir(pathbezpliku)
-    dane = open(pathpodzielony[-1], 'r')
-    #print(dane.read())
+    sciezkabezpliku = s.join(sciezkapodzielona[:-1])
+    chdir(sciezkabezpliku)
+    dane = open(sciezkapodzielona[-1], 'r')
 
     return dane
 
 
-def detectcolumns():
+def wykryjkolumny():
     opcja = GUI.askcategory()
     if opcja == 1:
-        print("Opcja 1")
         return odczytajkolumny()
     elif opcja == 2:
-        print("Opcja 2")
+        return 0
     else:
         GUI.Error()
-
-    #for line in tekst:
-    #   nazwazpliku, liczbazpliku = line.split(";")
-    #   liczbazpliku = liczbazpliku.strip()
 
 
 def odczytajkolumny():
     global dane
     firstline = dane.readline()
     firstline = firstline.strip()
-    #print(firstline)
-    #ilosckategorii = firstline.count(",") + 1
-    #print(ilosckategorii)
     kategorie = firstline.split(",")
 
     return kategorie
+
+
+def odczytajdane():
+    global dane
+    danezlisty = []
+    for line in dane:
+        line = line.strip()
+        asd = line.split(",")
+        danezlisty.append(asd)
+
+    return danezlisty

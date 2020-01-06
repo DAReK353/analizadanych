@@ -1,3 +1,4 @@
 from GUI import GUI
 
-GUI()
+if True:
+    GUI()
