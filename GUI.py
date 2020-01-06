@@ -1,45 +1,32 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
-import os
+import loadingfile
 
 pathpodzielony = 0
+fsafsa = 0
+dane = 0
+height = 5
+width = 5
 
 
 class GUI:
     def __init__(self):
         def WybierzPlikWindow():
-            def select():
-                global pathpodzielony
-                rawpath = askopenfilename()
-                pathpelny = rawpath.replace('/', '\\')
-                pathpodzielony = pathpelny.split('\\')
-                print(pathpodzielony)
-                textboxplik.see("end")
-                textboxplik.insert(END, pathpelny)
-                textboxloadedfile.see("end")
-                textboxloadedfile.insert(END, pathpodzielony[-1])
-
-            wybierzplik = Tk()
-            wybierzplik.title('Select File')
-
-            info1 = Label(wybierzplik, text="File:")
-            info1.grid(row=1, column=1)
-            textboxplik = Text(wybierzplik, height=1, width=60)
-            textboxplik.grid(row=1, column=2, columnspan=4)
-            przyciskwybierz1 = Button(wybierzplik, text='Select File...', command=select)
-            przyciskwybierz1.grid(row=2, column=1, columnspan=2, sticky="news")
-            przyciskwybierz2 = Button(wybierzplik, text='Done', command=wybierzplik.destroy)
-            przyciskwybierz2.grid(row=2, column=3, columnspan=4, sticky="news")
-
-            wybierzplik.mainloop()
+            global pathpodzielony
+            rawpath = askopenfilename()
+            pathpelny = rawpath.replace('/', '\\')
+            pathpodzielony = pathpelny.split('\\')
+            print(pathpodzielony)
+            textboxloadedfile.delete('1.0', END)
+            textboxloadedfile.insert(END, pathpodzielony[-1])
 
         def LoadFile():
             global pathpodzielony
-            s = "\\"
-            pathbezpliku = s.join(pathpodzielony[:-1])
-            os.chdir(pathbezpliku)
-            dane = os.open(pathpodzielony[-1], os.O_RDONLY)
-            print(dane)
+            global dane
+            dane = loadingfile.loadfile(pathpodzielony)
+            print(dane.read())
+            #textboxloadedfile.delete('1.0', END)
+            #textboxloadedfile.insert(END, 'Unable to open file.')
 
         root = Tk()
         root.title('Data Analyzer')
@@ -55,7 +42,17 @@ class GUI:
 
         infoplik = Label(root, text="Selected File:")
         infoplik.grid(row=2, column=1)
-        textboxloadedfile = Text(root, height=1, width=20)
+        textboxloadedfile = Text(root, height=1, width=15)
         textboxloadedfile.grid(row=2, column=2)
 
+        if fsafsa > 0:
+            for i in range(height):  # Rows
+                for j in range(width):  # Columns
+                    g = 4 + j
+                    h = 1 + i
+                    b = Entry(root, text="")
+                    b.grid(row=g, column=h)
+
         root.mainloop()
+
+        exit()
