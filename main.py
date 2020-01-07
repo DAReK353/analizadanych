@@ -1,4 +1,4 @@
 from GUI import GUI
 
-if True:
+while True:
     GUI()

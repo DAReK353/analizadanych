@@ -15,12 +15,9 @@ def zaladujplik(sciezkapodzielona):
 
 
 def wykryjkolumny():
-    opcja = GUI.askcategory()
-    if opcja == 1:
-        return odczytajkolumny()
-    elif opcja == 2:
-        return 0
-    else:
+    try:
+        GUI.askcategory()
+    except:
         GUI.Error()
 
 
@@ -31,6 +28,17 @@ def odczytajkolumny():
     kategorie = firstline.split(",")
 
     return kategorie
+
+
+def odczytajilosckolumn():
+    global dane
+    firstline = dane.readline()
+    firstline = firstline.strip()
+    ilosckolumn = firstline.split(",")
+    ilosckolumn = len(ilosckolumn)
+    dane.seek(0)
+
+    return ilosckolumn
 
 
 def odczytajdane():

@@ -13,7 +13,8 @@ choice = 0
 
 def askcategory():
     global choice
-    choice = askquestion("Category", "Does the file contain data category names in the first line?")
+    choice = askquestion("Category", "Does the file contain data category names in the first line?\nCheck and select "
+                                     "the appropriate option. Otherwise the file may not load correctly.")
     if choice == 'yes':
         return 1
     elif choice == 'no':
@@ -48,6 +49,7 @@ class GUI:
             kategorie = 0
             choice = 0
             textboxloadedfile.delete('1.0', END)
+            root.destroy()
 
         def WybierzPlikWindow():
             global pathpodzielony
@@ -63,14 +65,17 @@ class GUI:
             global dane
             global kategorie
             dane = loadingfile.zaladujplik(pathpodzielony)
-            kategorie = loadingfile.wykryjkolumny()
+            loadingfile.wykryjkolumny()
             if choice == "yes":
-                print(type(kategorie[1]), len(kategorie), kategorie)
+                kategorie = loadingfile.odczytajkolumny()
+                print(len(kategorie), kategorie)
                 print("Z kategorią")
             elif choice == "no":
+                kategorie = loadingfile.odczytajilosckolumn()
+                print(kategorie)
                 print("Bez kategorii")
             danezlisty = loadingfile.odczytajdane()
-            print(danezlisty)
+            root.destroy()
 
         root = Tk()
         root.title('Data Analyzer')
@@ -87,16 +92,26 @@ class GUI:
         infoplik = Label(root, text="Selected File:")
         infoplik.grid(row=2, column=1)
         textboxloadedfile = Text(root, height=1, width=50)
-        textboxloadedfile.grid(row=2, column=2, columnspan=10)
+        textboxloadedfile.grid(row=2, column=2)
 
-        if not kategorie == 0:
-            for i in range(height):  # Rows
-                for j in range(width):  # Columns
-                    g = 4 + j
-                    h = 1 + i
-                    b = Entry(root, text="")
+        if not dane == 0:
+            if type(kategorie) == list:
+                ilosckategorii = len(kategorie)
+                for naglowek, j in zip(kategorie, range(ilosckategorii)):
+                    g = 3
+                    h = 3 + j
+                    b = Label(root, text=naglowek, height=1, width=10)
                     b.grid(row=g, column=h)
+            elif type(kategorie) == int:
+                kolumna = 1
+                for j in range(kategorie):  # Columns
+                    Column = "Column #" + str(kolumna)
+                    g = 3
+                    h = 3 + j
+                    b = Label(root, text=Column, height=1, width=10)
+                    b.grid(row=g, column=h)
+                    kolumna += 1
+        else:
+            pass
 
         root.mainloop()
-
-        exit()
