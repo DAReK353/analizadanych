@@ -9,6 +9,7 @@ height = 5
 width = 5
 kategorie = 0
 choice = 0
+pathpelny = "Empty"
 
 
 def askcategory():
@@ -26,9 +27,9 @@ def Error():
     error.title('Error')
 
     infoplik = Label(error, text="Error")
-    infoplik.grid(row=1, column=2)
+    infoplik.grid(row=1, column=1)
     przycisk1 = Button(error, text='OK', command=error.destroy)
-    przycisk1.grid(row=1, column=1, sticky="news")
+    przycisk1.grid(row=2, column=1, sticky="news")
 
     error.mainloop()
 
@@ -36,23 +37,19 @@ def Error():
 class GUI:
     def __init__(self):
         def Clean():
-            global pathpodzielony
-            global dane
-            global height
-            global width
-            global kategorie
-            global choice
+            global pathpodzielony, dane, height, width, kategorie, choice, pathpelny
             pathpodzielony = 0
             dane = 0
             height = 5
             width = 5
             kategorie = 0
             choice = 0
+            pathpelny = "Empty"
             textboxloadedfile.delete('1.0', END)
             root.destroy()
 
         def WybierzPlikWindow():
-            global pathpodzielony
+            global pathpodzielony, pathpelny
             rawpath = askopenfilename()
             pathpelny = rawpath.replace('/', '\\')
             pathpodzielony = pathpelny.split('\\')
@@ -61,11 +58,12 @@ class GUI:
             textboxloadedfile.insert(END, pathpelny)
 
         def LoadFile():
-            global pathpodzielony
-            global dane
-            global kategorie
-            dane = loadingfile.zaladujplik(pathpodzielony)
-            loadingfile.wykryjkolumny()
+            global pathpodzielony, dane, kategorie
+            try:
+                dane = loadingfile.zaladujplik(pathpodzielony)
+                loadingfile.wykryjkolumny()
+            except:
+                Error()
             if choice == "yes":
                 kategorie = loadingfile.odczytajkolumny()
                 print(len(kategorie), kategorie)
@@ -74,7 +72,8 @@ class GUI:
                 kategorie = loadingfile.odczytajilosckolumn()
                 print(kategorie)
                 print("Bez kategorii")
-            danezlisty = loadingfile.odczytajdane()
+            else:
+                Error()
             root.destroy()
 
         root = Tk()
@@ -94,6 +93,9 @@ class GUI:
         textboxloadedfile = Text(root, height=1, width=50)
         textboxloadedfile.grid(row=2, column=2)
 
+        textboxloadedfile.delete('1.0', END)
+        textboxloadedfile.insert(END, pathpelny)
+
         if not dane == 0:
             if type(kategorie) == list:
                 ilosckategorii = len(kategorie)
@@ -102,15 +104,27 @@ class GUI:
                     h = 3 + j
                     b = Label(root, text=naglowek, height=1, width=10)
                     b.grid(row=g, column=h)
+
             elif type(kategorie) == int:
                 kolumna = 1
-                for j in range(kategorie):  # Columns
+                for j in range(kategorie):
                     Column = "Column #" + str(kolumna)
                     g = 3
                     h = 3 + j
                     b = Label(root, text=Column, height=1, width=10)
                     b.grid(row=g, column=h)
                     kolumna += 1
+            else:
+                Error()
+                pass
+
+            loadingfile.odczytajdane()
+            loadingfile.obliczenia()
+            #for p in loadingfile.odczytajdane():
+            #   for i in range(height):  # Rows
+            #        for j in range(width):  # Columns
+            #            b = Entry(root, text="")
+            #            b.grid(row=i, column=j)
         else:
             pass
 
