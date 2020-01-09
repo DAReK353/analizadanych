@@ -36,14 +36,14 @@ def odczytajkolumny():
 
 
 def odczytajilosckolumn():
-    global dane
+    global dane, kategorie
     firstline = dane.readline()
     firstline = firstline.strip()
-    ilosckolumn = firstline.split(",")
-    ilosckolumn = len(ilosckolumn)
+    firstline = firstline.split(",")
+    kategorie = len(firstline)
     dane.seek(0)
 
-    return ilosckolumn
+    return kategorie
 
 
 def odczytajdane():
@@ -53,43 +53,62 @@ def odczytajdane():
         line = line.strip()
         asd = line.split(",")
         danezlisty.append(asd)
-
-    #return danezlisty
+    print(danezlisty)
 
 
 def obliczenia():
     global danezlisty, kategorie
     global sredniadanych, maxliczba, minliczba
+    sredniadanych = []
+    maxliczba = []
+    minliczba = []
     if type(kategorie) == list:
         ilosckategorii = len(kategorie)
-        for u in range(ilosckategorii):
-            temp = []
-            for p in danezlisty:
-                teme1 = p[u]
-                try:
-                    tem1 = int(teme1)
-                    temp.append(tem1)
-                except ValueError:
-                    pass
-
+    else:
+        ilosckategorii = kategorie
+    for u in range(ilosckategorii):
+        temp = []
+        for p in danezlisty:
+            teme1 = p[u]
             try:
-                maxliczb = max(temp)
-                maxliczba.append(maxliczb)
+                tem1 = int(teme1)
+                temp.append(tem1)
             except ValueError:
-                maxliczba.append(0)
-            try:
-                minliczb = min(temp)
-                minliczba.append(minliczb)
-            except ValueError:
-                minliczba.append(0)
+                pass
 
-            temp1 = sum(temp)
-            temp2 = len(temp)
-            try:
-                srednia = temp1 / temp2
-            except ZeroDivisionError:
-                srednia = 0
-            sredniadanych.append(srednia)
-        print(len(sredniadanych), sredniadanych)
-        print(len(maxliczba), maxliczba)
-        print(len(minliczba), minliczba)
+        try:
+            maxliczb = max(temp)
+            maxliczba.append(maxliczb)
+        except ValueError:
+            maxliczba.append(0)
+        try:
+            minliczb = min(temp)
+            minliczba.append(minliczb)
+        except ValueError:
+            minliczba.append(0)
+
+        temp1 = sum(temp)
+        temp2 = len(temp)
+        try:
+            srednia = temp1 / temp2
+        except ZeroDivisionError:
+            srednia = 0
+        sredniadanych.append(srednia)
+    print(len(sredniadanych), sredniadanych)
+    print(len(maxliczba), maxliczba)
+    print(len(minliczba), minliczba)
+
+
+def getsrednia():
+    global sredniadanych
+    return sredniadanych
+
+
+def getmaxliczba():
+    global maxliczba
+    return maxliczba
+
+
+def getminliczba():
+    global minliczba
+    return minliczba

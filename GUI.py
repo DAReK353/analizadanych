@@ -74,7 +74,74 @@ class GUI:
                 print("Bez kategorii")
             else:
                 Error()
-            root.destroy()
+            oknodane()
+
+        def oknodane():
+            global kategorie
+            danewyniki = Tk()
+            danewyniki.title('Results')
+
+            if not dane == 0:
+                loadingfile.odczytajdane()
+                loadingfile.obliczenia()
+                if type(kategorie) == list:
+                    ilosckategorii = len(kategorie)
+                    for naglowek, j in zip(kategorie, range(ilosckategorii)):
+                        g = 3
+                        h = 1 + j
+                        b = Label(danewyniki, text=naglowek, height=1, width=10)
+                        b.grid(row=g, column=h)
+
+                elif type(kategorie) == int:
+                    kolumna = 1
+                    for j in range(kategorie):
+                        Column = "Column #" + str(kolumna)
+                        g = 3
+                        h = 1 + j
+                        b = Label(danewyniki, text=Column, height=1, width=10)
+                        b.grid(row=g, column=h)
+                        kolumna += 1
+                else:
+                    Error()
+                    pass
+
+                srednia = loadingfile.getsrednia()
+                iloscsrednia = len(srednia)
+                infosrednia = Label(danewyniki, text="Average:")
+                infosrednia.grid(row=4, column=0)
+                for s, i in zip(srednia, range(iloscsrednia)):
+                    g = 4
+                    h = 1 + i
+                    b = Text(danewyniki, height=1, width=10)
+                    b.grid(row=g, column=h)
+                    b.delete('1.0', END)
+                    b.insert(END, s)
+
+                maxliczba = loadingfile.getmaxliczba()
+                iloscmax = len(maxliczba)
+                infosrednia = Label(danewyniki, text="Max Number:")
+                infosrednia.grid(row=5, column=0)
+                for s, i in zip(maxliczba, range(iloscmax)):
+                    g = 5
+                    h = 1 + i
+                    b = Text(danewyniki, height=1, width=10)
+                    b.grid(row=g, column=h)
+                    b.delete('1.0', END)
+                    b.insert(END, s)
+
+                minliczba = loadingfile.getminliczba()
+                iloscmin = len(minliczba)
+                infosrednia = Label(danewyniki, text="Min Number:")
+                infosrednia.grid(row=6, column=0)
+                for s, i in zip(minliczba, range(iloscmin)):
+                    g = 6
+                    h = 1 + i
+                    b = Text(danewyniki, height=1, width=10)
+                    b.grid(row=g, column=h)
+                    b.delete('1.0', END)
+                    b.insert(END, s)
+            else:
+                pass
 
         root = Tk()
         root.title('Data Analyzer')
@@ -95,37 +162,5 @@ class GUI:
 
         textboxloadedfile.delete('1.0', END)
         textboxloadedfile.insert(END, pathpelny)
-
-        if not dane == 0:
-            if type(kategorie) == list:
-                ilosckategorii = len(kategorie)
-                for naglowek, j in zip(kategorie, range(ilosckategorii)):
-                    g = 3
-                    h = 3 + j
-                    b = Label(root, text=naglowek, height=1, width=10)
-                    b.grid(row=g, column=h)
-
-            elif type(kategorie) == int:
-                kolumna = 1
-                for j in range(kategorie):
-                    Column = "Column #" + str(kolumna)
-                    g = 3
-                    h = 3 + j
-                    b = Label(root, text=Column, height=1, width=10)
-                    b.grid(row=g, column=h)
-                    kolumna += 1
-            else:
-                Error()
-                pass
-
-            loadingfile.odczytajdane()
-            loadingfile.obliczenia()
-            #for p in loadingfile.odczytajdane():
-            #   for i in range(height):  # Rows
-            #        for j in range(width):  # Columns
-            #            b = Entry(root, text="")
-            #            b.grid(row=i, column=j)
-        else:
-            pass
 
         root.mainloop()
