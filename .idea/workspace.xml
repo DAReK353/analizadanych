@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loadingfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/loadingfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578487285942</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="WIP Pre-Alpha">
+      <created>1578573731252</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1578573731252</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,13 +158,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+    <MESSAGE value="WIP Pre-Alpha" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP Pre-Alpha" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="614" y="113" key="CommitChangelistDialog2" timestamp="1578487284737">
+    <state x="614" y="113" key="CommitChangelistDialog2" timestamp="1578573730032">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578487284737" />
+    <state x="614" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578573730032" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1578136958586">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -167,22 +174,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="821" y="419" key="GitRewordDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577957925316" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1578573479074">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1578574369070">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578573479074" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1578573479073">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578574369070" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1578574369069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578573479073" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1578573479073">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578574369069" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1578574369069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578573479073" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1578573479074">
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578574369069" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1578574369070">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578573479074" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578574369070" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1577971792732">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

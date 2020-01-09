@@ -23,7 +23,8 @@ def wykryjkolumny():
     try:
         GUI.askcategory()
     except:
-        GUI.Error()
+        error1 = "Unknown Error"
+        GUI.Error(error1)
 
 
 def odczytajkolumny():
@@ -53,7 +54,6 @@ def odczytajdane():
         line = line.strip()
         asd = line.split(",")
         danezlisty.append(asd)
-    print(danezlisty)
 
 
 def obliczenia():

@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import askquestion
+from tkinter.messagebox import showerror
 import loadingfile
 
 pathpodzielony = 0
@@ -22,16 +23,8 @@ def askcategory():
         return 2
 
 
-def Error():
-    error = Tk()
-    error.title('Error')
-
-    infoplik = Label(error, text="Error")
-    infoplik.grid(row=1, column=1)
-    przycisk1 = Button(error, text='OK', command=error.destroy)
-    przycisk1.grid(row=2, column=1, sticky="news")
-
-    error.mainloop()
+def Error(wiadomosc):
+    showerror("Error", wiadomosc)
 
 
 class GUI:
@@ -46,7 +39,6 @@ class GUI:
             choice = 0
             pathpelny = "Empty"
             textboxloadedfile.delete('1.0', END)
-            root.destroy()
 
         def WybierzPlikWindow():
             global pathpodzielony, pathpelny
@@ -63,18 +55,19 @@ class GUI:
                 dane = loadingfile.zaladujplik(pathpodzielony)
                 loadingfile.wykryjkolumny()
             except:
-                Error()
+                error1 = "No file selected."
+                Error(error1)
+
             if choice == "yes":
                 kategorie = loadingfile.odczytajkolumny()
-                print(len(kategorie), kategorie)
-                print("Z kategorią")
+                print("Z kategorią:", len(kategorie), kategorie)
+                oknodane()
             elif choice == "no":
                 kategorie = loadingfile.odczytajilosckolumn()
-                print(kategorie)
-                print("Bez kategorii")
+                print("Bez kategorii:", kategorie)
+                oknodane()
             else:
-                Error()
-            oknodane()
+                pass
 
         def oknodane():
             global kategorie
@@ -102,7 +95,8 @@ class GUI:
                         b.grid(row=g, column=h)
                         kolumna += 1
                 else:
-                    Error()
+                    error3 = "Unable to load columns."
+                    Error(error3)
                     pass
 
                 srednia = loadingfile.getsrednia()
