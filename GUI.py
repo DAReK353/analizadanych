@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
-from tkinter.messagebox import askquestion
-from tkinter.messagebox import showerror
+from tkinter.messagebox import askquestion, showerror
+from tkinter.ttk import Progressbar
+
 import loadingfile
 
 pathpodzielony = 0
@@ -39,6 +40,7 @@ class GUI:
             choice = 0
             pathpelny = "Empty"
             textboxloadedfile.delete('1.0', END)
+            textboxloadedfile.insert(END, pathpelny)
 
         def WybierzPlikWindow():
             global pathpodzielony, pathpelny
