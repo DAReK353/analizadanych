@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import askquestion, showerror
-from tkinter.ttk import Progressbar
 
 import loadingfile
 
